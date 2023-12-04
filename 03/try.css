@@ -27,6 +27,9 @@
   color: black;
   box-shadow: none;
 }
+.try .btn.letter-spacing {
+  box-shadow: none;
+}
 .try .btn.letter-spacing:hover {
   letter-spacing: 4px;
   background-color: black;
