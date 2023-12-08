@@ -1,0 +1,6 @@
+@charset "UTF-8";
+h1 {
+  background: orange;
+  /* 割算をするときはcalcで囲む */
+  font-size: 15px;
+}/*# sourceMappingURL=style.css.map */

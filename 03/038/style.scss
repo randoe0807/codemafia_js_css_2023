@@ -1,0 +1,8 @@
+@use "child" as *;
+
+h1 {
+    background: $cOrange;
+     /* 割算をするときはcalcで囲む */
+    font-size: calc(30px/2);
+}
+
