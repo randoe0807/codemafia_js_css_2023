@@ -1,0 +1,38 @@
+$cBlack: black;
+
+body {
+  text-align: center;
+}
+
+.rect {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: $cBlack;
+  animation: sk-bouncedelay 1.4s;
+  // アニメーションのタイミングを指定
+  animation-timing-function: ease;
+  // アニメーション開始時間を遅らせる
+  // animation-delay: 3s;
+  // アニメーションの繰り返し回数
+  animation-iteration-count:infinite;
+  // alternateにすると、逆方向にもアニメーションする
+  animation-direction: alternate;
+  // fill-modeでアニメーション終了時のスタイルを指定
+  animation-fill-mode: forwards;
+
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+@keyframes sk-bouncedelay {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
