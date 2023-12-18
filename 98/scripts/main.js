@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     const hero = new HeroSlider(".swiper");
     hero.start();
-    // hero.start({delay: 2000});
-  
-    // setTimeout(() => {
-    //   hero.stop();
-    // }, 5000)
+
+    const cb  = function(el, isIntersecting) {
+      if(isIntersecting){
+        const ta = new TweenTextAnimation(el);
+        ta.animate();
+      }
+    }
+    const so = new ScrollObserver('.tween-animate-title', cb);
   });
