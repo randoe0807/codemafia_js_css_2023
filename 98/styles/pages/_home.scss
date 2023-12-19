@@ -2,148 +2,210 @@
 @use "../parts/common" as *;
 
 .travel {
-    @extend .content-width;
-    @extend .mb-lg;
+  @extend .content-width;
+  @extend .mb-lg;
 
-    &__inner {
-        @extend .flex;
-        background: $cBgGray;
-        padding: 15px;
+  &__inner {
+		position: relative;
+		z-index: 0;
+    @extend .flex;
+    justify-content: space-between;
+    background: $cBgGray;
+    padding: 15px;
 
-        @include mq(md){
-            padding: 50px;
-        }
-
-        @include mq(xl){
-            padding: 50px 100px;
-        }
-    }
-    &__img {
-        & > img {
-            opacity: 1;
-        }
+    @include mq(md) {
+      padding: 50px;
     }
 
-    &__texts {
-        @include mq(md){
-            display: flex;
-            align-items: flex-end;
-        }
+    @include mq(xl) {
+      padding: 50px 100px;
+    }
+  }
+  &__img {
+    height: 300px;
+    @extend .mb-sm;
+		box-shadow:inset 0 0  30px  $cBlack;
+
+    @include mq(md) {
+      flex-basis: 47%;
+    }
+    @include mq(lg) {
+      height: 400px;
+    }
+    & > img {
+			position: relative;
+			z-index: -1;
+      opacity: 1;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+
+  }
+
+  }
+
+	.img-zoom:hover {
+	transform: scale(1.1);
+	}
+	&__title {
+		@extend .mb-sm;
+		@extend .font-md;
+}
+
+  &__texts {
+    @extend .pb-sm;
+
+    @include mq(md) {
+      display: flex;
+      align-items: flex-end;
+      flex-basis: 47%;
     }
 
-    &__title {
-        @extend .mb-sm;
-        @extend .font-lr;
-    }
+		&.inview {
+			
+			& .travel__title::before {
+				@include animation(
+					$name: scaleX,
+					$duration: 0.3s,
+					$delay: 1.5s
+				);
+			}
 
-    &__item {
-        @include mq(md){
-            flex-basis: 50%;
-        }
-        @include mq(lg) {
-            margin-bottom: 60px;
-        }
-    }
+		}
+  }
+  &__title {
+    position: relative;
 
-    &__btn {
-        text-align: center;
-        flex-basis:100%;
+    &::before {
+			display: none;
+      position: absolute;
+      content: "";
+      height: 1px;
+      width: 100px;
+      top: 50%;
+      left: -120px;
+      background: $cBlack;
+			transform:scaleX(0);
+			transform-origin: right;
+
+      @include mq(lg){
+          display: block;
+      }
     }
+  }
+  &__description {
+    @include mq(lg) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__item {
+    @include mq(md) {
+      flex-basis: 50%;
+    }
+    @include mq(lg) {
+      margin-bottom: 60px;
+    }
+  }
+
+  &__btn {
+    text-align: center;
+    flex-basis: 100%;
+  }
+}
+
+@keyframes scaleX{
+	0%{
+		transform:scaleX(0);
+	}
+	100%{
+		transform:scaleX(1);
+	}
 }
 .houses {
-    @extend .content-width;
-    @extend .mb-lg;
+  @extend .content-width;
+  @extend .mb-lg;
 
-    &__inner {
-        @extend .flex;
+  &__inner {
+    @extend .flex;
+  }
+
+  &__title {
+    @extend .mb-sm;
+    @extend .font-lr;
+  }
+
+  &__item {
+    @include mq(md) {
+      flex-basis: 50%;
     }
-
-    &__title {
-        @extend .mb-sm;
-        @extend .font-lr;
+    @include mq(lg) {
+      margin-bottom: 60px;
     }
+  }
 
-    &__item {
-        @include mq(md){
-            flex-basis: 50%;
-        }
-        @include mq(lg) {
-            margin-bottom: 60px;
-        }
-    }
-
-    &__btn {
-        text-align: center;
-        flex-basis:100%;
-    }
-
+  &__btn {
+    text-align: center;
+    flex-basis: 100%;
+  }
 }
 
 .popular {
-
-    &__header {
-        @extend .content-width;
+  &__header {
+    @extend .content-width;
+  }
+  &__inner {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      height: 90%;
+      width: 100%;
+      background: $cBgGray;
     }
-    &__inner {
-        position: relative;
-        &::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            height: 90%;
-            width: 100%;
-            background: $cBgGray;
-
-
-        }
-
+  }
+  &__container {
+    position: relative;
+    @extend .content-width;
+    @extend .flex;
+    justify-content: space-between;
+    z-index: 2;
+  }
+  &__item {
+    @include mq(md) {
+      flex-basis: 47%;
     }
-    &__container {
-        position: relative;
-        @extend .content-width;
-        @extend .flex;
-        justify-content: space-between;
-        z-index: 2;
-
+    @include mq(lg) {
+      flex-basis: 25%;
     }
-    &__item {
-        @include mq(md){
-            flex-basis: 47%;
-        }
-        @include mq(lg) {
-            flex-basis: 25%;
-        }
-        @include mq(xl) {
-            flex-basis: 23%;
-        }
-
+    @include mq(xl) {
+      flex-basis: 23%;
     }
+  }
 
-    &__title {
-        @extend .mb-sm;
-        @extend .font-md;
+  &__title {
+    @extend .mb-sm;
+    @extend .font-md;
+  }
+  &__img {
+    height: 150px;
+    margin-bottom: 5px;
 
-    }
-    &__img {
-        height:150px;
-        margin-bottom: 5px;
-
-        @include mq(lg){
-            height: 335px;
-        }
-
-        & > img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
+    @include mq(lg) {
+      height: 335px;
     }
 
-    &__btn {
-        flex-basis:100%;
-        text-align: center;
-        @extend .mb-lg;
-
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
+  }
+
+  &__btn {
+    flex-basis: 100%;
+    text-align: center;
+    @extend .mb-lg;
+  }
 }
